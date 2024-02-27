@@ -1,4 +1,6 @@
 #include "shell.h"
+#include <sys/stat.h>
+
 
 /**
  * is_cmd - determines if a file is an executable command
@@ -15,7 +17,7 @@ int is_cmd(info_t *info, char *path)
 	if (!path || stat(path, &st))
 		return (0);
 
-	if (st.st_mode & S_IFREG)
+	if ( S_ISDIR(st.st_mode) ) 
 	{
 		return (1);
 	}
